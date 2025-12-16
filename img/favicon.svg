@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <style>
+    .brackets { fill: #00b8ff; font-weight: bold; }
+    .text { fill: #ffffff; font-weight: bold; }
+  </style>
+  <text x="50%" y="55%" font-family="monospace" font-size="34" text-anchor="middle" dominant-baseline="middle">
+    <tspan class="brackets">&lt;</tspan><tspan class="text">AN</tspan><tspan class="brackets">/&gt;</tspan>
+  </text>
+</svg>
