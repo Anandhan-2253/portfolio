@@ -1,5 +1,33 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+    // --- Safety Reveal ---
+    const revealSite = () => {
+        document.body.classList.remove('loading');
+        document.querySelectorAll('.reveal').forEach(el => el.classList.add('active'));
+        if (typeof gsap !== 'undefined') {
+            gsap.to(".header", { y: 0, opacity: 1, duration: 1, ease: "power4.out" });
+        }
+    };
+    setTimeout(revealSite, 4000); // Fail-safe: Reveal after 4s anyway
+
+    // --- Library Check ---
+    if (typeof gsap === 'undefined' || typeof THREE === 'undefined') {
+        console.warn("External libraries failing to load. Checking CSP/Internet.");
+        revealSite();
+        return;
+    }
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    // --- Scroll Progress Bar ---
+    window.addEventListener('scroll', () => {
+        const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = (winScroll / height) * 100;
+        const progressBar = document.querySelector(".scroll-progress");
+        if (progressBar) progressBar.style.width = scrolled + "%";
+    });
+
     // --- Custom Cursor ---
     const cursorDot = document.querySelector('.cursor-dot');
     const cursorOutline = document.querySelector('.cursor-outline');
@@ -7,180 +35,164 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('mousemove', (e) => {
         const posX = e.clientX;
         const posY = e.clientY;
+        if (cursorDot) {
+            cursorDot.style.left = `${posX}px`;
+            cursorDot.style.top = `${posY}px`;
+        }
+        if (cursorOutline) {
+            gsap.to(cursorOutline, {
+                left: posX,
+                top: posY,
+                duration: 0.5,
+                ease: "power2.out"
+            });
+        }
+    });
 
-        // Dot follows instantly
-        cursorDot.style.left = `${posX}px`;
-        cursorDot.style.top = `${posY}px`;
+    // --- Project Card Cursor Fix ---
+    const pCards = document.querySelectorAll('.project-card');
+    pCards.forEach(card => {
+        card.addEventListener('mouseenter', () => {
+            if (cursorDot) cursorDot.style.opacity = '0';
+            if (cursorOutline) cursorOutline.style.opacity = '0';
+        });
+        card.addEventListener('mouseleave', () => {
+            if (cursorDot) cursorDot.style.opacity = '1';
+            if (cursorOutline) cursorOutline.style.opacity = '1';
+        });
+    });
 
-        // Outline follows with lag (using animate for smooth trailing)
-        cursorOutline.animate({
-            left: `${posX}px`,
-            top: `${posY}px`
-        }, { duration: 500, fill: "forwards" });
+    // --- Hero Parallax ---
+    window.addEventListener('mousemove', (e) => {
+        const { clientX, clientY } = e;
+        const xPos = (clientX / window.innerWidth - 0.5) * 40;
+        const yPos = (clientY / window.innerHeight - 0.5) * 40;
+
+        gsap.to(".hero-content", { x: xPos * 0.5, y: yPos * 0.5, duration: 1 });
+        gsap.to(".cyber-card", { x: -xPos, y: -yPos, duration: 1 });
     });
 
     // --- Typing Effect ---
     const typingText = document.getElementById('typing-text');
-    const roles = [
-        "Cybersecurity Enthusiast",
-        "Full-Stack Web Developer",
-        "Software Engineer",
-        "Problem Solver"
-    ];
-    let roleIndex = 0;
-    let charIndex = 0;
-    let isDeleting = false;
-    let typeSpeed = 100;
+    const roles = ["Cybersecurity Enthusiast", "Full-Stack Web Developer", "Software Engineer", "Problem Solver"];
+    let roleIndex = 0, charIndex = 0, isDeleting = false;
 
     function type() {
+        if (!typingText) return;
         const currentRole = roles[roleIndex];
+        typingText.textContent = isDeleting ? currentRole.substring(0, charIndex - 1) : currentRole.substring(0, charIndex + 1);
+        charIndex = isDeleting ? charIndex - 1 : charIndex + 1;
 
-        if (isDeleting) {
-            typingText.textContent = currentRole.substring(0, charIndex - 1);
-            charIndex--;
-            typeSpeed = 50; // Faster deleting
-        } else {
-            typingText.textContent = currentRole.substring(0, charIndex + 1);
-            charIndex++;
-            typeSpeed = 100; // Normal typing
-        }
-
+        let typeSpeed = isDeleting ? 50 : 100;
         if (!isDeleting && charIndex === currentRole.length) {
-            // Finished typing word, pause then delete
-            isDeleting = true;
-            typeSpeed = 2000;
+            isDeleting = true; typeSpeed = 2000;
         } else if (isDeleting && charIndex === 0) {
-            // Finished deleting, switch to next role
-            isDeleting = false;
-            roleIndex = (roleIndex + 1) % roles.length;
-            typeSpeed = 500;
+            isDeleting = false; roleIndex = (roleIndex + 1) % roles.length; typeSpeed = 500;
         }
-
         setTimeout(type, typeSpeed);
     }
-
-    // Start typing loop
     setTimeout(type, 1000);
 
-
     // --- Scroll Reveal ---
-    const revealElements = document.querySelectorAll('.reveal');
-
-    const revealObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('active');
-                observer.unobserve(entry.target);
-            }
-        });
-    }, {
-        root: null,
-        threshold: 0.15,
-        rootMargin: "0px 0px -50px 0px"
-    });
-
-    revealElements.forEach(el => {
-        // Add base style for reveal here if not in CSS, 
-        // but best practice is CSS. We'll ensure CSS has .reveal and .reveal.active
-        revealObserver.observe(el);
-    });
-
-    // --- Navigation Active State ---
-    const sections = document.querySelectorAll('section');
-    const navLinks = document.querySelectorAll('.nav-link');
-
-    window.addEventListener('scroll', () => {
-        let current = '';
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.clientHeight;
-            if (scrollY >= (sectionTop - sectionHeight / 3)) {
-                current = section.getAttribute('id');
-            }
-        });
-
-        navLinks.forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('href').includes(current)) {
-                link.classList.add('active');
-            }
+    gsap.utils.toArray(".reveal").forEach(el => {
+        ScrollTrigger.create({
+            trigger: el,
+            start: "top 95%",
+            onEnter: () => el.classList.add('active'),
+            onLeaveBack: () => el.classList.remove('active'),
+            toggleActions: "play none none none"
         });
     });
 
-    // --- Modal Logic ---
+    // --- Workshops & Credentials Modal Logic ---
     const modal = document.getElementById('image-modal');
     const modalImg = document.getElementById('modal-image');
     const modalCaption = document.getElementById('caption');
     const closeBtn = document.querySelector('.modal-close');
 
-    // Get all certificate links
-    const certLinks = document.querySelectorAll('.cert-card');
+    const openModal = (src, title, details = "") => {
+        if (!modal || !modalImg) return;
+        modal.classList.add('active');
+        modalImg.src = src;
+        if (modalCaption) modalCaption.innerHTML = `<strong>${title}</strong><br><small>${details}</small>`;
+        document.body.style.overflow = 'hidden';
+        gsap.fromTo(modalImg, { scale: 0.8, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.5, ease: "back.out(1.7)" });
+    };
 
-    certLinks.forEach(link => {
-        link.addEventListener('click', function (e) {
+    const closeModal = () => {
+        if (!modal) return;
+        gsap.to(modal, {
+            opacity: 0, duration: 0.3, onComplete: () => {
+                modal.classList.remove('active');
+                modal.style.opacity = 1;
+                document.body.style.overflow = 'auto';
+            }
+        });
+    };
+
+    document.querySelectorAll('.cert-card').forEach(link => {
+        link.addEventListener('click', (e) => {
             e.preventDefault();
-            const imgSrc = this.getAttribute('href');
-
-            modal.classList.add('active');
-            modalImg.src = imgSrc;
-
-            // Optional: Set caption from title
-            const title = this.querySelector('.cert-title').textContent;
-            modalCaption.innerText = title;
+            openModal(link.getAttribute('href'), link.querySelector('.cert-title').textContent, link.querySelector('.cert-issuer').textContent);
         });
     });
 
-    // Close logic
-    function closeModal() {
-        modal.classList.remove('active');
+    document.querySelectorAll('.workshop-card').forEach(card => {
+        card.addEventListener('click', () => {
+            openModal(card.querySelector('img').src, card.dataset.title, `${card.dataset.organizer} • ${card.dataset.year}`);
+        });
+    });
+
+    // --- Project Details Modal ---
+    const pModal = document.getElementById('project-details-modal');
+    if (pModal) {
+        document.querySelectorAll('.project-details-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                pModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                gsap.fromTo(pModal.querySelector('.modal-container'),
+                    { scale: 0.9, opacity: 0 },
+                    { scale: 1, opacity: 1, duration: 0.4, ease: "back.out(1.2)" }
+                );
+            });
+        });
+
+        const closePModal = () => {
+            gsap.to(pModal, {
+                opacity: 0, duration: 0.3, onComplete: () => {
+                    pModal.classList.remove('active');
+                    pModal.style.opacity = 1;
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        };
+
+        pModal.querySelector('.modal-close').addEventListener('click', closePModal);
+        pModal.addEventListener('click', (e) => { if (e.target === pModal) closePModal(); });
     }
 
-    closeBtn.addEventListener('click', closeModal);
+    if (closeBtn) closeBtn.addEventListener('click', closeModal);
+    if (modal) modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+    document.addEventListener('keydown', (e) => { if (e.key === "Escape") closeModal(); });
 
-    // Close on click outside image
-    modal.addEventListener('click', (e) => {
-        if (e.target === modal) {
-            closeModal();
-        }
-    });
-
-    // Close on Escape key
-    document.addEventListener('keydown', (e) => {
-        if (e.key === "Escape" && modal.classList.contains('active')) {
-            closeModal();
-        }
-    });
-
-    // Remove loading class
-    document.body.classList.remove('loading');
-
-    // --- Mobile Navigation Logic ---
+    // --- Mobile Navigation ---
     const hamburger = document.querySelector('.hamburger');
     const nav = document.querySelector('.nav');
-    const mobileLinks = document.querySelectorAll('.nav-link');
-
-    hamburger.addEventListener('click', () => {
-        // Toggle Nav
-        nav.classList.toggle('nav-active');
-        // Toggle Icon Animation
-        hamburger.classList.toggle('active');
-    });
-
-    // Close menu when a link is clicked
-    mobileLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            nav.classList.remove('nav-active');
-            hamburger.classList.remove('active');
+    if (hamburger && nav) {
+        hamburger.addEventListener('click', () => {
+            nav.classList.toggle('nav-active');
+            hamburger.classList.toggle('active');
         });
-    });
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                nav.classList.remove('nav-active');
+                hamburger.classList.remove('active');
+            });
+        });
+    }
 
-    // Close menu when clicking outside
-    document.addEventListener('click', (e) => {
-        if (!nav.contains(e.target) && !hamburger.contains(e.target) && nav.classList.contains('nav-active')) {
-            nav.classList.remove('nav-active');
-            hamburger.classList.remove('active');
-        }
-    });
-
+    // --- Initial Site Reveal ---
+    window.addEventListener('load', revealSite);
 
 });

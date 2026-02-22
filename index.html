@@ -10,7 +10,7 @@
 
     <!-- Security Headers (OWASP) -->
     <meta http-equiv="Content-Security-Policy"
-        content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; object-src 'none'; frame-ancestors 'none'; base-uri 'self'; form-action 'self';">
+        content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; object-src 'none'; frame-ancestors 'none'; base-uri 'self'; form-action 'self';">
     <meta name="referrer" content="strict-origin-when-cross-origin">
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
 
@@ -23,9 +23,17 @@
         rel="stylesheet">
 
     <link rel="stylesheet" href="styles.css">
+
+    <!-- Dependencies -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 </head>
 
 <body class="loading">
+
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress"></div>
 
     <!-- Custom Cursor -->
     <div class="cursor-dot"></div>
@@ -75,18 +83,18 @@
             <div class="container">
                 <div class="hero-content">
                     <p class="overline fade-in-up">System Online... Initializing identity</p>
-                    <h1 class="hero-title fade-in-up delay-1">
+                    <h1 class="hero-title fade-in-up">
                         Hi, I'm <span class="glitch" data-text="Anandhanarayan">Anandhanarayan</span>
                     </h1>
-                    <div class="typewriter fade-in-up delay-2">
+                    <div class="typewriter fade-in-up">
                         <span id="typing-text"></span><span class="cursor-blink">_</span>
                     </div>
-                    <p class="hero-desc fade-in-up delay-3">
+                    <p class="hero-desc fade-in-up">
                         Bridging the gap between <strong>Secure Systems</strong> and <strong>Modern Web
                             Experiences</strong>.
                         I build software that is both beautiful and unbreakable.
                     </p>
-                    <div class="hero-actions fade-in-up delay-3">
+                    <div class="hero-actions fade-in-up">
                         <a href="#work" class="btn btn-primary">View Projects</a>
                         <a href="#contact" class="btn btn-secondary">Contact Me</a>
                     </div>
@@ -190,7 +198,7 @@
                     </div>
 
                     <!-- Web Development -->
-                    <div class="skill-category reveal delay-1">
+                    <div class="skill-category reveal">
                         <h3 class="category-title">Web Development</h3>
                         <ul class="tag-list">
                             <li class="skill-item">
@@ -234,7 +242,7 @@
                     </div>
 
                     <!-- Data Science & AI -->
-                    <div class="skill-category reveal delay-2">
+                    <div class="skill-category reveal">
                         <h3 class="category-title">Data Science & AI</h3>
                         <ul class="tag-list">
                             <li class="skill-item">
@@ -300,7 +308,7 @@
                     </div>
 
                     <!-- Tools & Technologies -->
-                    <div class="skill-category reveal delay-1">
+                    <div class="skill-category reveal">
                         <h3 class="category-title">Tools & Tech</h3>
                         <ul class="tag-list">
                             <li class="skill-item">
@@ -382,13 +390,11 @@
                             </div>
                         </div>
                         <div class="project-visual cyber-bg" style="background-image: url('img/axzio.png');">
-                            <!-- Can use CSS patterns or an image -->
-                            <div class="matrix-effect"></div>
                         </div>
                     </article>
 
                     <!-- Project 2 -->
-                    <article class="project-card reveal delay-1">
+                    <article class="project-card reveal">
                         <div class="project-content">
                             <p class="project-overline"> Augmented Reality Visualizer for Mathematical Equations</p>
                             <h3 class="project-title">EduView AR</h3>
@@ -425,7 +431,7 @@
                     </article>
 
                     <!-- Project 3 -->
-                    <article class="project-card reveal delay-1">
+                    <article class="project-card reveal">
                         <div class="project-content">
                             <p class="project-overline">Parkinson's Disease Detection System</p>
                             <h3 class="project-title">ParkScan</h3>
@@ -464,7 +470,7 @@
                     </article>
 
                     <!-- Project 4 -->
-                    <article class="project-card reveal delay-1">
+                    <article class="project-card reveal">
                         <div class="project-content">
                             <p class="project-overline">OSINT Toolkit</p>
                             <h3 class="project-title">Auto-OSINT</h3>
@@ -497,7 +503,7 @@
                     </article>
 
                     <!-- Project 5 -->
-                    <article class="project-card reveal delay-1">
+                    <article class="project-card reveal">
                         <div class="project-content">
                             <p class="project-overline">Cybersecurity Tool</p>
                             <h3 class="project-title">Keylogger</h3>
@@ -531,6 +537,41 @@
                         </div>
                     </article>
 
+                    <!-- Project 6 -->
+                    <article class="project-card reveal">
+                        <div class="project-content">
+                            <p class="project-overline">Cybersecurity Tool</p>
+                            <h3 class="project-title">Cloud Misconfiguration Scanning</h3>
+                            <p class="project-desc"><b>Cloud Misconfiguration Scanning</b> is a Python-based
+                                cybersecurity tool designed to identify,
+                                analyze, and prioritize cloud security misconfigurations across Identity & Access
+                                Management (IAM), Storage, and Network components.</p>
+                            <ul class="project-tech">
+                                <li>Python</li>
+                                <li>Flask</li>
+                            </ul>
+                            <div class="project-links">
+                                <a href="https://github.com/Anandhan-2253/Cloud-Misconfiguration-Scanner"
+                                    target="_blank" rel="noopener noreferrer" aria-label="GitHub"><svg
+                                        xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path
+                                            d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+                                        </path>
+                                    </svg></a>
+                                <a href="#" aria-label="External Link"><svg xmlns="http://www.w3.org/2000/svg"
+                                        width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                        <polyline points="15 3 21 3 21 9"></polyline>
+                                        <line x1="10" y1="14" x2="21" y2="3"></line>
+                                    </svg></a>
+                            </div>
+                        </div>
+                        <div class="project-visual web-bg" style="background-image: url('img/cms.png');">
+                        </div>
+                    </article>
                 </div>
             </div>
         </section>
@@ -538,8 +579,13 @@
         <!-- Certificates Section (04) -->
         <section id="certificates" class="certificates section">
             <div class="container">
-                <div class="section-header fade-in-up">
-                    <h2 class="section-title"><span class="num">04.</span> Credentials</h2>
+                <div class="section-header reveal">
+                    <div class="title-line-container">
+                        <h2 class="section-title"><span class="num">04.</span> Credentials</h2>
+                        <div class="title-line">
+                            <div class="line-dot"></div>
+                        </div>
+                    </div>
                     <p class="section-subtitle">Certifications & Achievements</p>
                 </div>
 
@@ -547,6 +593,9 @@
                     <!-- Cert 1: Cloud Computing -->
                     <a href="img/Coursera 2T47GURCCPZH-1.png" target="_blank" rel="noopener noreferrer"
                         class="cert-card reveal">
+                        <div class="cert-overlay">
+                            <span>View Certificate</span>
+                        </div>
                         <div class="cert-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
@@ -568,6 +617,9 @@
 
                     <!-- Cert 2: CPT -->
                     <a href="img/CPT.jpg" target="_blank" rel="noopener noreferrer" class="cert-card reveal delay-1">
+                        <div class="cert-overlay">
+                            <span>View Certificate</span>
+                        </div>
                         <div class="cert-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
@@ -585,6 +637,9 @@
 
                     <!-- Cert 3: Ethical Hacker -->
                     <a href="img/eh.png" target="_blank" rel="noopener noreferrer" class="cert-card reveal delay-2">
+                        <div class="cert-overlay">
+                            <span>View Certificate</span>
+                        </div>
                         <div class="cert-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
@@ -604,6 +659,9 @@
                     <!-- Cert 4: Cybersec Intro -->
                     <a href="img/IntrotoCybersec.png" target="_blank" rel="noopener noreferrer"
                         class="cert-card reveal">
+                        <div class="cert-overlay">
+                            <span>View Certificate</span>
+                        </div>
                         <div class="cert-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
@@ -623,6 +681,9 @@
                     <!-- Cert 5: Chip Level -->
                     <a href="img/lapchipcert.jpg" target="_blank" rel="noopener noreferrer"
                         class="cert-card reveal delay-1">
+                        <div class="cert-overlay">
+                            <span>View Certificate</span>
+                        </div>
                         <div class="cert-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
@@ -646,6 +707,43 @@
                         </div>
                         <div class="cert-glow"></div>
                     </a>
+                </div>
+
+                <!-- Workshops & Training Subsection -->
+                <div class="credentials-subsection">
+                    <h3 class="subsection-title reveal">Workshops & Training</h3>
+                    <div class="workshops-grid">
+                        <!-- Workshop 1 -->
+                        <div class="workshop-card reveal delay-1" data-title="ETHICAL HACKING WORKSHOP" data-organizer="MTC"
+                            data-year="2025">
+                            <div class="workshop-img-wrapper">
+                                <img src="img/mtsc.jpeg" alt="Workshop Certificate"
+                                    class="workshop-preview">
+                                <div class="workshop-overlay">
+                                    <span>View Certificate</span>
+                                </div>
+                            </div>
+                            <div class="workshop-info">
+                                <h4 class="workshop-title">Ethical Hacking Workshop</h4>
+                                <p class="workshop-meta">MAR THOMA COLLEGE OF SCIENCE & TECHNOLOGY • 2025</p>
+                            </div>
+                        </div>
+
+                        <!-- Workshop 2 -->
+                        <div class="workshop-card reveal" data-title="ETHICAL HACKING WORKSHOP" data-organizer="SAC"
+                            data-year="2026">
+                            <div class="workshop-img-wrapper">
+                                <img src="img/sac.jpeg" alt="Workshop Certificate" class="workshop-preview">
+                                <div class="workshop-overlay">
+                                    <span>View Certificate</span>
+                                </div>
+                            </div>
+                            <div class="workshop-info">
+                                <h4 class="workshop-title">Ethical Hacking Workshop</h4>
+                                <p class="workshop-meta">SREE AYYAPPA COLLEGE • 2026</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -683,6 +781,51 @@
             </div>
         </div>
     </footer>
+
+    <!-- Project Details Modal -->
+    <div id="project-details-modal" class="modal">
+        <div class="modal-container p-details">
+            <span class="modal-close">&times;</span>
+            <div class="p-details-header">
+                <p class="overline">Security Engineering Tool</p>
+                <h2 class="p-details-title">Cloud Misconfiguration Scanner</h2>
+            </div>
+            <div class="p-details-body">
+                <div class="p-details-grid">
+                    <div class="p-details-info">
+                        <h3>Key Features</h3>
+                        <ul class="features-list">
+                            <li><strong>IAM Audit:</strong> Scans for overly permissive roles and unused credentials.
+                            </li>
+                            <li><strong>Storage Inspection:</strong> Detects publicly accessible S3 buckets and
+                                unencrypted disks.</li>
+                            <li><strong>Network Analysis:</strong> Identifies exposed ports and weak security group
+                                rules.</li>
+                        </ul>
+
+                        <h3>Risk Prioritization</h3>
+                        <p>Uses a custom modular rule engine to assign risk scores based on exploitability and impact,
+                            ensuring engineers focus on critical vulnerabilities first.</p>
+
+                        <div class="disclaimer">
+                            <p><strong>Disclaimer:</strong> This tool is for educational and authorized security
+                                auditing purposes only.</p>
+                        </div>
+                    </div>
+                    <div class="p-details-visual">
+                        <h3>Architecture</h3>
+                        <div class="arch-diagram">
+                            <div class="arch-node">Scanner Core</div>
+                            <div class="arch-arrow"></div>
+                            <div class="arch-node">Rule Engine</div>
+                            <div class="arch-arrow"></div>
+                            <div class="arch-node">Security Report</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Image Modal -->
     <div id="image-modal" class="modal">
