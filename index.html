@@ -4,23 +4,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anandhanarayan | CyberSecurity & Developer</title>
+    <title>Anandhanarayan | Junior Developer & Cybersecurity Specialist</title>
     <meta name="description"
-        content="Portfolio of Anandhanarayan - Cybersecurity Enthusiast, Web Developer, and Software Engineer.">
+        content="Executive portfolio of Anandhanarayan - Senior Software Engineer, Cybersecurity Specialist, and Full-Stack Developer. Enterprise-level solutions and secure systems.">
 
     <!-- Security Headers (OWASP) -->
     <meta http-equiv="Content-Security-Policy"
-        content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; object-src 'none'; frame-ancestors 'none'; base-uri 'self'; form-action 'self';">
+        content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; object-src 'none'; frame-ancestors 'none'; base-uri 'self'; form-action 'self';">
     <meta name="referrer" content="strict-origin-when-cross-origin">
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
 
     <link rel="icon" type="image/svg+xml" href="img/favicon.svg?v=3">
-    <!-- Fonts: Space Grotesk (Tech), Outfit (Clean), Fira Code (Code) -->
+    
+    <!-- Professional Fonts: Inter (Body), JetBrains Mono (Code) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500&family=Outfit:wght@300;400;500;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="styles.css">
 
@@ -30,744 +29,401 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 </head>
 
-<body class="loading">
-
-    <!-- Scroll Progress Bar -->
-    <div class="scroll-progress"></div>
-
-    <!-- Custom Cursor -->
-    <div class="cursor-dot"></div>
-    <div class="cursor-outline"></div>
-
-
-
-    <!-- Background Elements -->
-    <div class="scanline"></div>
-    <div class="noise-overlay"></div>
+<body>
+    <!-- Animated Background Canvas -->
+    <div id="canvas-container"></div>
 
     <!-- Navigation -->
     <header class="header">
-        <a href="#hero" class="logo"><span class="highlight">&lt;</span>AN<span class="highlight">/&gt;</span></a>
-
-        <div class="header-controls">
+        <div class="container header-content">
+            <a href="#hero" class="logo">AN/</a>
             <nav class="nav">
                 <ul class="nav-list">
-                    <li><a href="#about" class="nav-link"><span class="nav-num">01.</span> About</a></li>
-                    <li><a href="#skills" class="nav-link"><span class="nav-num">02.</span> Skills</a></li>
-                    <li><a href="#work" class="nav-link"><span class="nav-num">03.</span> Projects</a></li>
-                    <li><a href="#certificates" class="nav-link"><span class="nav-num">04.</span> Credentials</a></li>
-                    <li><a href="#contact" class="nav-link"><span class="nav-num">05.</span> Contact</a></li>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#skills" class="nav-link">Skills</a></li>
+                    <li><a href="#projects" class="nav-link">Projects</a></li>
+                    <li><a href="#credentials" class="nav-link">Credentials</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
                 </ul>
             </nav>
-
-            <button class="theme-toggle" aria-label="Toggle Theme">
-                <!-- Icon handled by CSS/JS or SVG -->
-                <svg class="terminal-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="4 17 10 11 4 5"></polyline>
-                    <line x1="12" y1="19" x2="20" y2="19"></line>
-                </svg>
+            <button class="hamburger" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
             </button>
-
-            <div class="hamburger">
-                <div class="bar"></div>
-                <div class="bar"></div>
-                <div class="bar"></div>
-            </div>
         </div>
     </header>
 
     <main>
         <!-- Hero Section -->
-        <section id="hero" class="hero section">
+        <section id="hero" class="hero">
             <div class="container">
                 <div class="hero-content">
-                    <p class="overline fade-in-up">System Online... Initializing identity</p>
-                    <h1 class="hero-title fade-in-up">
-                        Hi, I'm <span class="glitch" data-text="Anandhanarayan">Anandhanarayan</span>
-                    </h1>
-                    <div class="typewriter fade-in-up">
-                        <span id="typing-text"></span><span class="cursor-blink">_</span>
-                    </div>
-                    <p class="hero-desc fade-in-up">
-                        Bridging the gap between <strong>Secure Systems</strong> and <strong>Modern Web
-                            Experiences</strong>.
-                        I build software that is both beautiful and unbreakable.
+                    <p class="hero-subtitle">HI, I'M</p>
+                    <h1 class="hero-title">Anandhanarayan</h1>
+                    <p class="hero-tagline">Junior Developer &amp; Cybersecurity Specialist</p>
+                    <p class="hero-description">
+                        I build secure, scalable systems and elegant digital experiences. 
+                        Specializing in development and enterprise security.
                     </p>
-                    <div class="hero-actions fade-in-up">
-                        <a href="#work" class="btn btn-primary">View Projects</a>
-                        <a href="#contact" class="btn btn-secondary">Contact Me</a>
+                    <div class="hero-cta">
+                        <a href="#projects" class="btn btn-primary">View My Work</a>
+                        <a href="#contact" class="btn btn-secondary">Get In Touch</a>
                     </div>
                 </div>
-                <div class="hero-visual fade-in delay-3">
-                    <div class="cyber-card wobble">
-                        <div class="card-header">
-                            <span class="dot red"></span>
-                            <span class="dot yellow"></span>
-                            <span class="dot green"></span>
-                        </div>
-                        <div class="code-block">
-                            <div class="line"><span class="keyword">class</span> <span class="class">Developer</span> {
-                            </div>
-                            <div class="line indent"> <span class="keyword">constructor</span>() {</div>
-                            <div class="line indent-2"> <span class="this">this</span>.role = [<span
-                                    class="str">'CyberSec'</span>, <span class="str">'WebDev'</span>, <span
-                                    class="str">'SoftDev'</span>];</div>
-                            <div class="line indent-2"> <span class="this">this</span>.passion = <span
-                                    class="bool">true</span>;</div>
-                            <div class="line indent"> }</div>
-                            <div class="line indent"> <span class="method">deploy</span>() {</div>
-                            <div class="line indent-2"> <span class="func">secure_system</span>();</div>
-                            <div class="line indent-2"> <span class="return">return</span> <span
-                                    class="str">"Impact"</span>;</div>
-                            <div class="line indent"> }</div>
-                            <div class="line">}</div>
-                        </div>
-                    </div>
+            </div>
+            <div class="scroll-indicator">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="M12 5v14M19 12l-7 7-7-7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about">
+            <div class="container">
+                <div class="section-header">
+                    <h2>About</h2>
+                </div>
+                <div class="about-content">
+                    <p>
+                        I'm a Software Engineer and Cybersecurity Specialist with a dual focus on building elegant, 
+                        scalable systems and ensuring they're secure by design. Over the course of my career, I've developed 
+                        a strong foundation in full-stack development, and penetration testing.
+                    </p>
+                    <p>
+                        My approach combines rigorous security practices with modern development methodologies. 
+                        I believe that robust systems require both technical excellence and a security-first mindset. 
+                        Whether architecting backend services, developing interactive front-ends, or auditing infrastructure, 
+                        I bring attention to detail, problem-solving rigor, and a commitment to production-ready code.
+                    </p>
                 </div>
             </div>
         </section>
 
-        <!-- About Section (01) -->
-        <section id="about" class="about section">
+        <!-- Skills Section -->
+        <section id="skills" class="skills">
             <div class="container">
-                <div class="section-header fade-in-up">
-                    <h2 class="section-title"><span class="num">01.</span> About The Operator</h2>
+                <div class="section-header">
+                    <h2>Skills &amp; Expertise</h2>
                 </div>
-                <div class="about-grid">
-                    <div class="about-text reveal">
-                        <p class="body-text">
-                            I operate at the intersection of <span class="highlight">Code and Curiosity</span>. As a
-                            developer, I love turning ideas into interactive, seamless experiences. As a cybersecurity
-                            enthusiast, I’m driven by the challenge of understanding how systems fail — and <em>how to
-                                make them stronger</em>.
-                        </p>
-                        <p class="body-text">
-                            My journey began with software development, exploring logic, design, and automation. Over
-                            time,
-                            my fascination with ethical hacking and penetration testing reshaped how I think about
-                            technology — <em>not just as a creator, but as a protector</em>.
-                        </p>
-                        <p class="body-text">
-                            Now, I <span class="highlight">code with a hacker’s mindset</span> — questioning
-                            assumptions,
-                            testing boundaries, and building digital experiences that are not only functional but also
-                            secure by design.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Skills Section (02) -->
-        <section id="skills" class="skills section">
-            <div class="container">
-                <div class="section-header fade-in-up">
-                    <h2 class="section-title"><span class="num">02.</span> Technical Arsenal</h2>
-                    <p class="section-subtitle">Languages, Tools & Frameworks</p>
-                </div>
-
                 <div class="skills-grid">
                     <!-- Programming Languages -->
-                    <div class="skill-category reveal">
-                        <h3 class="category-title">Programming Languages</h3>
-                        <ul class="tag-list">
-                            <li class="skill-item">
-                                <span class="skill-name">Python</span>
-                                <div class="skill-progress" aria-label="Advanced">
-                                    <span class="bar filled"></span><span class="bar filled"></span><span
-                                        class="bar filled"></span><span class="bar filled"></span><span
-                                        class="bar"></span>
-                                </div>
-                            </li>
-                            <li class="skill-item">
-                                <span class="skill-name">C Programming</span>
-                                <div class="skill-progress" aria-label="Intermediate">
-                                    <span class="bar filled"></span><span class="bar filled"></span><span
-                                        class="bar filled"></span><span class="bar"></span><span class="bar"></span>
-                                </div>
-                            </li>
-                            <li class="skill-item">
-                                <span class="skill-name">PHP</span>
-                                <div class="skill-progress" aria-label="Intermediate">
-                                    <span class="bar filled"></span><span class="bar filled"></span><span
-                                        class="bar filled"></span><span class="bar"></span><span class="bar"></span>
-                                </div>
-                            </li>
-                        </ul>
+                    <div class="skill-category">
+                        <h3>Languages</h3>
+                        <div class="skills-list">
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">C Programming</span>
+                            <span class="skill-tag">PHP</span>
+                            <span class="skill-tag">JavaScript</span>
+                            <span class="skill-tag">TypeScript</span>
+                            <span class="skill-tag">Java</span>
+                        </div>
                     </div>
 
                     <!-- Web Development -->
-                    <div class="skill-category reveal">
-                        <h3 class="category-title">Web Development</h3>
-                        <ul class="tag-list">
-                            <li class="skill-item">
-                                <span class="skill-name">HTML5</span>
-                                <div class="skill-progress" aria-label="Advanced">
-                                    <span class="bar filled"></span><span class="bar filled"></span><span
-                                        class="bar filled"></span><span class="bar filled"></span><span
-                                        class="bar filled"></span>
-                                </div>
-                            </li>
-                            <li class="skill-item">
-                                <span class="skill-name">CSS3</span>
-                                <div class="skill-progress" aria-label="Advanced">
-                                    <span class="bar filled"></span><span class="bar filled"></span><span
-                                        class="bar filled"></span><span class="bar filled"></span><span
-                                        class="bar filled"></span>
-                                </div>
-                            </li>
-                            <li class="skill-item">
-                                <span class="skill-name">JavaScript</span>
-                                <div class="skill-progress" aria-label="Intermediate">
-                                    <span class="bar filled"></span><span class="bar filled"></span><span
-                                        class="bar filled"></span><span class="bar"></span><span class="bar"></span>
-                                </div>
-                            </li>
-                            <li class="skill-item">
-                                <span class="skill-name">MySQL</span>
-                                <div class="skill-progress" aria-label="Intermediate">
-                                    <span class="bar filled"></span><span class="bar filled"></span><span
-                                        class="bar filled"></span><span class="bar"></span><span class="bar"></span>
-                                </div>
-                            </li>
-                            <li class="skill-item">
-                                <span class="skill-name">Backend Dev</span>
-                                <div class="skill-progress" aria-label="Intermediate">
-                                    <span class="bar filled"></span><span class="bar filled"></span><span
-                                        class="bar filled"></span><span class="bar"></span><span class="bar"></span>
-                                </div>
-                            </li>
-                        </ul>
+                    <div class="skill-category">
+                        <h3>Web Development</h3>
+                        <div class="skills-list">
+                            <span class="skill-tag">HTML5</span>
+                            <span class="skill-tag">CSS3</span>
+                            <span class="skill-tag">JavaScript</span>
+                            <span class="skill-tag">React</span>
+                            <span class="skill-tag">Node.js</span>
+                            <span class="skill-tag">Express</span>
+                            <span class="skill-tag">MySQL</span>
+                            <span class="skill-tag">Backend Dev</span>
+                            <span class="skill-tag">PostgreSQL</span>
+                        </div>
                     </div>
 
                     <!-- Data Science & AI -->
-                    <div class="skill-category reveal">
-                        <h3 class="category-title">Data Science & AI</h3>
-                        <ul class="tag-list">
-                            <li class="skill-item">
-                                <span class="skill-name">Machine Learning</span>
-                                <div class="skill-progress" aria-label="Intermediate">
-                                    <span class="bar filled"></span><span class="bar filled"></span><span
-                                        class="bar filled"></span><span class="bar"></span><span class="bar"></span>
-                                </div>
-                            </li>
-                            <li class="skill-item">
-                                <span class="skill-name">Deep Learning</span>
-                                <div class="skill-progress" aria-label="Intermediate">
-                                    <span class="bar filled"></span><span class="bar filled"></span><span
-                                        class="bar filled"></span><span class="bar"></span><span class="bar"></span>
-                                </div>
-                            </li>
-                            <li class="skill-item">
-                                <span class="skill-name">TensorFlow</span>
-                                <div class="skill-progress" aria-label="Intermediate">
-                                    <span class="bar filled"></span><span class="bar filled"></span><span
-                                        class="bar filled"></span><span class="bar"></span><span class="bar"></span>
-                                </div>
-                            </li>
-                            <li class="skill-item">
-                                <span class="skill-name">scikit-learn</span>
-                                <div class="skill-progress" aria-label="Intermediate">
-                                    <span class="bar filled"></span><span class="bar filled"></span><span
-                                        class="bar filled"></span><span class="bar"></span><span class="bar"></span>
-                                </div>
-                            </li>
-                        </ul>
+                    <div class="skill-category">
+                        <h3>Data Science &amp; ML</h3>
+                        <div class="skills-list">
+                            <span class="skill-tag">Machine Learning</span>
+                            <span class="skill-tag">Deep Learning</span>
+                            <span class="skill-tag">TensorFlow</span>
+                            <span class="skill-tag">scikit-learn</span>
+                            <span class="skill-tag">Pandas</span>
+                        </div>
                     </div>
 
                     <!-- Cybersecurity -->
-                    <div class="skill-category reveal">
-                        <h3 class="category-title">Cybersecurity</h3>
-                        <ul class="tag-list">
-                            <li class="skill-item">
-                                <span class="skill-name">Ethical Hacking</span>
-                                <div class="skill-progress" aria-label="Advanced">
-                                    <span class="bar filled"></span><span class="bar filled"></span><span
-                                        class="bar filled"></span><span class="bar filled"></span><span
-                                        class="bar"></span>
-                                </div>
-                            </li>
-                            <li class="skill-item">
-                                <span class="skill-name">Vuln Analysis</span>
-                                <div class="skill-progress" aria-label="Advanced">
-                                    <span class="bar filled"></span><span class="bar filled"></span><span
-                                        class="bar filled"></span><span class="bar filled"></span><span
-                                        class="bar"></span>
-                                </div>
-                            </li>
-                            <li class="skill-item">
-                                <span class="skill-name">Pen Testing</span>
-                                <div class="skill-progress" aria-label="Advanced">
-                                    <span class="bar filled"></span><span class="bar filled"></span><span
-                                        class="bar filled"></span><span class="bar filled"></span><span
-                                        class="bar"></span>
-                                </div>
-                            </li>
-                        </ul>
+                    <div class="skill-category">
+                        <h3>Cybersecurity</h3>
+                        <div class="skills-list">
+                            <span class="skill-tag">Ethical Hacking</span>
+                            <span class="skill-tag">Vuln Analysis</span>
+                            <span class="skill-tag">Pen Testing</span>
+                            <span class="skill-tag">Security Analysis</span>
+                            <span class="skill-tag">OWASP</span>
+                        </div>
                     </div>
 
-                    <!-- Tools & Technologies -->
-                    <div class="skill-category reveal">
-                        <h3 class="category-title">Tools & Tech</h3>
-                        <ul class="tag-list">
-                            <li class="skill-item">
-                                <span class="skill-name">VS Code</span>
-
-                            </li>
-                            <li class="skill-item">
-                                <span class="skill-name">Git</span>
-                            </li>
-                            <li class="skill-item">
-                                <span class="skill-name">Postman</span>
-                                <div class="skill-progress" aria-label="Intermediate">
-                                    <span class="bar filled"></span><span class="bar filled"></span><span
-                                        class="bar filled"></span><span class="bar"></span><span class="bar"></span>
-                                </div>
-                            </li>
-                            <li class="skill-item">
-                                <span class="skill-name">Burp Suite</span>
-                                <div class="skill-progress" aria-label="Advanced">
-                                    <span class="bar filled"></span><span class="bar filled"></span><span
-                                        class="bar filled"></span><span class="bar filled"></span><span
-                                        class="bar"></span>
-                                </div>
-                            </li>
-                            <li class="skill-item">
-                                <span class="skill-name">Metasploit</span>
-                                <div class="skill-progress" aria-label="Intermediate">
-                                    <span class="bar filled"></span><span class="bar filled"></span><span
-                                        class="bar filled"></span><span class="bar"></span><span class="bar"></span>
-                                </div>
-                            </li>
-                        </ul>
+                    <!-- Tools & Tech -->
+                    <div class="skill-category">
+                        <h3>Tools &amp; Platforms</h3>
+                        <div class="skills-list">
+                            <span class="skill-tag">VS Code</span>
+                            <span class="skill-tag">Git</span>
+                            <span class="skill-tag">Docker</span>
+                            <span class="skill-tag">Postman</span>
+                            <span class="skill-tag">Burp Suite</span>
+                            <span class="skill-tag">Metasploit</span>
+                            <span class="skill-tag">Redis</span>
+                            <span class="skill-tag">AWS</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Work Section (03) -->
-        <section id="work" class="work section">
+        <!-- Projects Section -->
+        <section id="projects" class="projects">
             <div class="container">
-                <div class="section-header fade-in-up">
-                    <h2 class="section-title"><span class="num">03.</span> Selected Missions</h2>
-                    <p class="section-subtitle">Deployed Projects & Case Studies</p>
+                <div class="section-header">
+                    <h2>Selected Projects</h2>
                 </div>
-
                 <div class="projects-grid">
                     <!-- Project 1 -->
-                    <article class="project-card reveal">
+                    <article class="project-card">
+                        <div class="project-image" style="background-image: url('img/axzio.png');"></div>
                         <div class="project-content">
-                            <p class="project-overline">Threat Alert and Location Sharing System</p>
                             <h3 class="project-title">AxioWatch</h3>
-                            <p class="project-desc">AxioWatch is a web-based safety alert system designed to empower
-                                users in distress by enabling them to instantly report threats and share their real-time
-                                location with concerned authorities or trusted contacts.</p>
-                            <ul class="project-tech">
-                                <li>HTML</li>
-                                <li>CSS</li>
-                                <li>JS</li>
-                                <li>PHP</li>
-                                <li>MySQL</li>
-                            </ul>
-                            <div class="project-links">
-                                <a href="https://github.com/Anandhan-2253/Axiowatch" target="_blank"
-                                    rel="noopener noreferrer" aria-label="GitHub"><svg
-                                        xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round">
-                                        <path
-                                            d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
-                                        </path>
-                                    </svg></a>
-                                <a href="#" aria-label="External Link"><svg xmlns="http://www.w3.org/2000/svg"
-                                        width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                                        <polyline points="15 3 21 3 21 9"></polyline>
-                                        <line x1="10" y1="14" x2="21" y2="3"></line>
-                                    </svg></a>
+                            <p class="project-desc">
+                                A web-based safety alert system designed to empower users in distress by enabling them to 
+                                instantly report threats and share their real-time location with concerned authorities or trusted contacts.
+                            </p>
+                            <div class="project-tech">
+                                <span>HTML</span>
+                                <span>CSS</span>
+                                <span>JavaScript</span>
+                                <span>PHP</span>
+                                <span>MySQL</span>
                             </div>
-                        </div>
-                        <div class="project-visual cyber-bg" style="background-image: url('img/axzio.png');">
+                            <a href="https://github.com/Anandhan-2253/Axiowatch" target="_blank" rel="noopener noreferrer" class="project-link">
+                                View on GitHub →
+                            </a>
                         </div>
                     </article>
 
                     <!-- Project 2 -->
-                    <article class="project-card reveal">
+                    <article class="project-card">
+                        <div class="project-image" style="background-image: url('img/ar.png');"></div>
                         <div class="project-content">
-                            <p class="project-overline"> Augmented Reality Visualizer for Mathematical Equations</p>
                             <h3 class="project-title">EduView AR</h3>
-                            <p class="project-desc">EduView AR is an innovative augmented reality application that
-                                visualizes complex mathematical equations in real-time using immersive 3D models.</p>
-                            <ul class="project-tech">
-                                <li>Java</li>
-                                <li>ARCore</li>
-                                <li>Sceneform SDK</li>
-                                <li>ML Kit</li>
-                                <li>Android Studio</li>
-                            </ul>
-                            <div class="project-links">
-                                <a href="https://github.com/Anandhan-2253/Eduview-AR" target="_blank"
-                                    rel="noopener noreferrer" aria-label="GitHub"><svg
-                                        xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round">
-                                        <path
-                                            d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
-                                        </path>
-                                    </svg></a>
-                                <a href="#" aria-label="External Link"><svg xmlns="http://www.w3.org/2000/svg"
-                                        width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                                        <polyline points="15 3 21 3 21 9"></polyline>
-                                        <line x1="10" y1="14" x2="21" y2="3"></line>
-                                    </svg></a>
+                            <p class="project-desc">
+                                An innovative augmented reality application that visualizes complex mathematical equations 
+                                in real-time using immersive 3D models.
+                            </p>
+                            <div class="project-tech">
+                                <span>Java</span>
+                                <span>ARCore</span>
+                                <span>Sceneform SDK</span>
+                                <span>ML Kit</span>
+                                <span>Android Studio</span>
                             </div>
-                        </div>
-                        <div class="project-visual web-bg" style="background-image: url('img/ar.png');">
+                            <a href="https://github.com/Anandhan-2253/Eduview-AR" target="_blank" rel="noopener noreferrer" class="project-link">
+                                View on GitHub →
+                            </a>
                         </div>
                     </article>
 
                     <!-- Project 3 -->
-                    <article class="project-card reveal">
+                    <article class="project-card">
+                        <div class="project-image" style="background-image: url('img/parkinson.jpg');"></div>
                         <div class="project-content">
-                            <p class="project-overline">Parkinson's Disease Detection System</p>
                             <h3 class="project-title">ParkScan</h3>
-                            <p class="project-desc">This project implements a machine learning model for detecting
-                                Parkinson's disease using EMG (Electromyography) and FSR (Force Sensitive Resistor)
-                                sensor data. The model uses a combination of CNN and LSTM layers to analyze muscle
-                                activity and pressure patterns that are characteristic of Parkinson's disease.</p>
-                            <ul class="project-tech">
-                                <li>Python</li>
-                                <li>TensorFlow</li>
-                                <li>Sckit-learn</li>
-                                <li>Pandas</li>
-                                <li>Matplotlib</li>
-                            </ul>
-                            <div class="project-links">
-                                <a href="https://github.com/Anandhan-2253/ParkScan" target="_blank"
-                                    rel="noopener noreferrer" aria-label="GitHub"><svg
-                                        xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round">
-                                        <path
-                                            d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
-                                        </path>
-                                    </svg></a>
-                                <a href="#" aria-label="External Link"><svg xmlns="http://www.w3.org/2000/svg"
-                                        width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                                        <polyline points="15 3 21 3 21 9"></polyline>
-                                        <line x1="10" y1="14" x2="21" y2="3"></line>
-                                    </svg></a>
+                            <p class="project-desc">
+                                A machine learning system for detecting Parkinson's disease using EMG and FSR sensor data. 
+                                Combines CNN and LSTM layers to analyze muscle activity patterns.
+                            </p>
+                            <div class="project-tech">
+                                <span>Python</span>
+                                <span>TensorFlow</span>
+                                <span>scikit-learn</span>
+                                <span>Pandas</span>
+                                <span>Matplotlib</span>
                             </div>
-                        </div>
-                        <div class="project-visual web-bg" style="background-image: url('img/parkinson.jpg');">
+                            <a href="https://github.com/Anandhan-2253/ParkScan" target="_blank" rel="noopener noreferrer" class="project-link">
+                                View on GitHub →
+                            </a>
                         </div>
                     </article>
 
                     <!-- Project 4 -->
-                    <article class="project-card reveal">
+                    <article class="project-card">
+                        <div class="project-image" style="background-image: url('img/ao.png');"></div>
                         <div class="project-content">
-                            <p class="project-overline">OSINT Toolkit</p>
                             <h3 class="project-title">Auto-OSINT</h3>
-                            <p class="project-desc">Automated Open-Source Intelligence gathering tool built with Python.
-                                Investigate IPs, Emails, and Usernames with integrated APIs and visual graphs.</p>
-                            <ul class="project-tech">
-                                <li>Python</li>
-                            </ul>
-                            <div class="project-links">
-                                <a href="https://github.com/Anandhan-2253/Auto-OSINT" target="_blank"
-                                    rel="noopener noreferrer" aria-label="GitHub"><svg
-                                        xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round">
-                                        <path
-                                            d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
-                                        </path>
-                                    </svg></a>
-                                <a href="#" aria-label="External Link"><svg xmlns="http://www.w3.org/2000/svg"
-                                        width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                                        <polyline points="15 3 21 3 21 9"></polyline>
-                                        <line x1="10" y1="14" x2="21" y2="3"></line>
-                                    </svg></a>
+                            <p class="project-desc">
+                                Automated Open-Source Intelligence gathering tool built with Python. 
+                                Investigate IPs, emails, and usernames with integrated APIs and visual graphs.
+                            </p>
+                            <div class="project-tech">
+                                <span>Python</span>
+                                <span>APIs</span>
+                                <span>Data Visualization</span>
                             </div>
-                        </div>
-                        <div class="project-visual web-bg" style="background-image: url('img/ao.png');">
+                            <a href="https://github.com/Anandhan-2253/Auto-OSINT" target="_blank" rel="noopener noreferrer" class="project-link">
+                                View on GitHub →
+                            </a>
                         </div>
                     </article>
 
                     <!-- Project 5 -->
-                    <article class="project-card reveal">
+                    <article class="project-card">
+                        <div class="project-image" style="background-image: url('img/ks.png');"></div>
                         <div class="project-content">
-                            <p class="project-overline">Cybersecurity Tool</p>
                             <h3 class="project-title">Keylogger</h3>
-                            <p class="project-desc">Keylogger is a Python-based tool designed to showcase how keyloggers
-                                operate and raise awareness about cybersecurity threats. This tool captures keystrokes
-                                and sends them to a Telegram bot at configurable intervals, serving as an how malicious
-                                software can compromise personal information.</p>
-                            <ul class="project-tech">
-                                <li>Python</li>
-                            </ul>
-                            <div class="project-links">
-                                <a href="https://github.com/Anandhan-2253/keylogger" target="_blank"
-                                    rel="noopener noreferrer" aria-label="GitHub"><svg
-                                        xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round">
-                                        <path
-                                            d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
-                                        </path>
-                                    </svg></a>
-                                <a href="#" aria-label="External Link"><svg xmlns="http://www.w3.org/2000/svg"
-                                        width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                                        <polyline points="15 3 21 3 21 9"></polyline>
-                                        <line x1="10" y1="14" x2="21" y2="3"></line>
-                                    </svg></a>
+                            <p class="project-desc">
+                                A Python-based educational tool designed to showcase how keyloggers operate and raise awareness 
+                                about cybersecurity threats by capturing and transmitting keystrokes via Telegram.
+                            </p>
+                            <div class="project-tech">
+                                <span>Python</span>
+                                <span>Security</span>
+                                <span>Telegram API</span>
                             </div>
-                        </div>
-                        <div class="project-visual web-bg" style="background-image: url('img/ks.png');">
+                            <a href="https://github.com/Anandhan-2253/keylogger" target="_blank" rel="noopener noreferrer" class="project-link">
+                                View on GitHub →
+                            </a>
                         </div>
                     </article>
 
                     <!-- Project 6 -->
-                    <article class="project-card reveal">
+                    <article class="project-card">
+                        <div class="project-image" style="background-image: url('img/cms.png');"></div>
                         <div class="project-content">
-                            <p class="project-overline">Cybersecurity Tool</p>
-                            <h3 class="project-title">Cloud Misconfiguration Scanning</h3>
-                            <p class="project-desc"><b>Cloud Misconfiguration Scanning</b> is a Python-based
-                                cybersecurity tool designed to identify,
-                                analyze, and prioritize cloud security misconfigurations across Identity & Access
-                                Management (IAM), Storage, and Network components.</p>
-                            <ul class="project-tech">
-                                <li>Python</li>
-                                <li>Flask</li>
-                            </ul>
-                            <div class="project-links">
-                                <a href="https://github.com/Anandhan-2253/Cloud-Misconfiguration-Scanner"
-                                    target="_blank" rel="noopener noreferrer" aria-label="GitHub"><svg
-                                        xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round">
-                                        <path
-                                            d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
-                                        </path>
-                                    </svg></a>
-                                <a href="#" aria-label="External Link"><svg xmlns="http://www.w3.org/2000/svg"
-                                        width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                                        <polyline points="15 3 21 3 21 9"></polyline>
-                                        <line x1="10" y1="14" x2="21" y2="3"></line>
-                                    </svg></a>
+                            <h3 class="project-title">Cloud Misconfiguration Scanner</h3>
+                            <p class="project-desc">
+                                A Python-based cybersecurity tool designed to identify, analyze, and prioritize cloud security 
+                                misconfigurations across IAM, Storage, and Network components.
+                            </p>
+                            <div class="project-tech">
+                                <span>Python</span>
+                                <span>Flask</span>
+                                <span>AWS</span>
+                                <span>Security Analysis</span>
                             </div>
+                            <a href="https://github.com/Anandhan-2253/Cloud-Misconfiguration-Scanner" target="_blank" rel="noopener noreferrer" class="project-link">
+                                View on GitHub →
+                            </a>
                         </div>
-                        <div class="project-visual web-bg" style="background-image: url('img/cms.png');">
+                    </article>
+
+                    <!-- Project 7 -->
+                    <article class="project-card">
+                        <div class="project-image" style="background-image: url('img/aegis.png');"></div>
+                        <div class="project-content">
+                            <h3 class="project-title">AEGIS-X</h3>
+                            <p class="project-desc">
+                                An AI-augmented Security Operations Center platform that mirrors modern SIEM/SOAR workflows. 
+                                Features malware analysis, threat intelligence classification, and role-based access control.
+                            </p>
+                            <div class="project-tech">
+                                <span>AIR-LLM</span>
+                                <span>Node.js</span>
+                                <span>Express</span>
+                                <span>TypeScript</span>
+                                <span>PostgreSQL</span>
+                                <span>React</span>
+                                <span>Docker</span>
+                            </div>
+                            <a href="https://github.com/Anandhan-2253/AEGIS-X" target="_blank" rel="noopener noreferrer" class="project-link">
+                                View on GitHub →
+                            </a>
                         </div>
                     </article>
                 </div>
             </div>
         </section>
 
-        <!-- Certificates Section (04) -->
-        <section id="certificates" class="certificates section">
+        <!-- Credentials Section -->
+        <section id="credentials" class="credentials">
             <div class="container">
-                <div class="section-header reveal">
-                    <div class="title-line-container">
-                        <h2 class="section-title"><span class="num">04.</span> Credentials</h2>
-                        <div class="title-line">
-                            <div class="line-dot"></div>
+                <div class="section-header">
+                    <h2>Credentials</h2>
+                </div>
+                
+                <!-- Certifications -->
+                <div class="credentials-subsection">
+                    <h3>Certifications</h3>
+                    <div class="credentials-grid">
+                        <div class="credential-card" role="button" tabindex="0"
+                            data-img="img/ccb.png">
+                            <h4>Cloud Computing Basics</h4>
+                            <p class="credential-issuer">LearnQuest - Coursera</p>
+                            <p class="credential-date">Issued: 2022</p>
+                        </div>
+                        <div class="credential-card" role="button" tabindex="0"
+                            data-img="img/cpt.jpg">
+                            <h4>Certified Penetration Tester v3</h4>
+                            <p class="credential-issuer">RedTeam Hacker Academy</p>
+                            <p class="credential-date">Issued: 2025</p>
+                        </div>
+                        <div class="credential-card" role="button" tabindex="0"
+                            data-img="img/eh.png">
+                            <h4>Ethical Hacker</h4>
+                            <p class="credential-issuer">Cisco Networking Academy</p>
+                            <p class="credential-date">Issued: 2025</p>
+                        </div>
+                        <div class="credential-card" role="button" tabindex="0"
+                            data-img="img/intro-to-cybersecurity.png">
+                            <h4>Intro to Cybersecurity</h4>
+                            <p class="credential-issuer">Cisco Networking Academy</p>
+                            <p class="credential-date">Issued: 2023</p>
+                        </div>
+                        <div class="credential-card" role="button" tabindex="0"
+                            data-img="img/laptop-chip-level-repair.jpg">
+                            <h4>Laptop Chip Level Repair</h4>
+                            <p class="credential-issuer">Nextstep Technologies</p>
+                            <p class="credential-date">Issued: 2024</p>
                         </div>
                     </div>
-                    <p class="section-subtitle">Certifications & Achievements</p>
                 </div>
 
-                <div class="certs-grid">
-                    <!-- Cert 1: Cloud Computing -->
-                    <a href="img/Coursera 2T47GURCCPZH-1.png" target="_blank" rel="noopener noreferrer"
-                        class="cert-card reveal">
-                        <div class="cert-overlay">
-                            <span>View Certificate</span>
-                        </div>
-                        <div class="cert-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                                stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <line x1="2" y1="12" x2="22" y2="12"></line>
-                                <path
-                                    d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z">
-                                </path>
-                            </svg>
-                        </div>
-                        <div class="cert-content">
-                            <h3 class="cert-title">Cloud Computing Basics</h3>
-                            <p class="cert-issuer">LearnQuest - Coursera</p>
-                            <p class="cert-date">Issued: 2022</p>
-                        </div>
-                        <div class="cert-glow"></div>
-                    </a>
-
-                    <!-- Cert 2: CPT -->
-                    <a href="img/CPT.jpg" target="_blank" rel="noopener noreferrer" class="cert-card reveal delay-1">
-                        <div class="cert-overlay">
-                            <span>View Certificate</span>
-                        </div>
-                        <div class="cert-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                                stroke-linejoin="round">
-                                <path d="M12 15l-2 5l9-9l-9 1v-5l9-1l-9 9z"></path>
-                            </svg>
-                        </div>
-                        <div class="cert-content">
-                            <h3 class="cert-title">Certified Penetration Tester v3</h3>
-                            <p class="cert-issuer">RedTeam Hacker Academy</p>
-                            <p class="cert-date">Issued: 2025</p>
-                        </div>
-                        <div class="cert-glow"></div>
-                    </a>
-
-                    <!-- Cert 3: Ethical Hacker -->
-                    <a href="img/eh.png" target="_blank" rel="noopener noreferrer" class="cert-card reveal delay-2">
-                        <div class="cert-overlay">
-                            <span>View Certificate</span>
-                        </div>
-                        <div class="cert-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                                stroke-linejoin="round">
-                                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-                                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-                            </svg>
-                        </div>
-                        <div class="cert-content">
-                            <h3 class="cert-title">Ethical Hacker</h3>
-                            <p class="cert-issuer">Cisco Networking Academy</p>
-                            <p class="cert-date">Issued: 2025</p>
-                        </div>
-                        <div class="cert-glow"></div>
-                    </a>
-
-                    <!-- Cert 4: Cybersec Intro -->
-                    <a href="img/IntrotoCybersec.png" target="_blank" rel="noopener noreferrer"
-                        class="cert-card reveal">
-                        <div class="cert-overlay">
-                            <span>View Certificate</span>
-                        </div>
-                        <div class="cert-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                                stroke-linejoin="round">
-                                <polyline points="16 18 22 12 16 6"></polyline>
-                                <polyline points="8 6 2 12 8 18"></polyline>
-                            </svg>
-                        </div>
-                        <div class="cert-content">
-                            <h3 class="cert-title">Intro to Cybersecurity</h3>
-                            <p class="cert-issuer">Cisco Networking Academy</p>
-                            <p class="cert-date">Issued: 2023</p>
-                        </div>
-                        <div class="cert-glow"></div>
-                    </a>
-
-                    <!-- Cert 5: Chip Level -->
-                    <a href="img/lapchipcert.jpg" target="_blank" rel="noopener noreferrer"
-                        class="cert-card reveal delay-1">
-                        <div class="cert-overlay">
-                            <span>View Certificate</span>
-                        </div>
-                        <div class="cert-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                                stroke-linejoin="round">
-                                <rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect>
-                                <rect x="9" y="9" width="6" height="6"></rect>
-                                <line x1="9" y1="1" x2="9" y2="4"></line>
-                                <line x1="15" y1="1" x2="15" y2="4"></line>
-                                <line x1="9" y1="20" x2="9" y2="23"></line>
-                                <line x1="15" y1="20" x2="15" y2="23"></line>
-                                <line x1="20" y1="9" x2="23" y2="9"></line>
-                                <line x1="20" y1="14" x2="23" y2="14"></line>
-                                <line x1="1" y1="9" x2="4" y2="9"></line>
-                                <line x1="1" y1="14" x2="4" y2="14"></line>
-                            </svg>
-                        </div>
-                        <div class="cert-content">
-                            <h3 class="cert-title">Laptop Chip Level Repair</h3>
-                            <p class="cert-issuer">Nextstep Technologies</p>
-                            <p class="cert-date">Issued: 2024</p>
-                        </div>
-                        <div class="cert-glow"></div>
-                    </a>
-                </div>
-
-                <!-- Workshops & Training Subsection -->
+                <!-- Workshops -->
                 <div class="credentials-subsection">
-                    <h3 class="subsection-title reveal">Workshops & Training</h3>
-                    <div class="workshops-grid">
-                        <!-- Workshop 1 -->
-                        <div class="workshop-card reveal delay-1" data-title="ETHICAL HACKING WORKSHOP" data-organizer="MTC"
-                            data-year="2025">
-                            <div class="workshop-img-wrapper">
-                                <img src="img/mtsc.jpeg" alt="Workshop Certificate"
-                                    class="workshop-preview">
-                                <div class="workshop-overlay">
-                                    <span>View Certificate</span>
-                                </div>
-                            </div>
-                            <div class="workshop-info">
-                                <h4 class="workshop-title">Ethical Hacking Workshop</h4>
-                                <p class="workshop-meta">MAR THOMA COLLEGE OF SCIENCE & TECHNOLOGY • 2025</p>
-                            </div>
+                    <h3>Workshops &amp; Training</h3>
+                    <div class="credentials-grid">
+                        <div class="credential-card" role="button" tabindex="0"
+                            data-img="img/ethical-hacking-workshop.jpg">
+                            <h4>Ethical Hacking Workshop</h4>
+                            <p class="credential-issuer">Mar Thoma College of Science &amp; Technology</p>
+                            <p class="credential-date">2025</p>
                         </div>
-
-                        <!-- Workshop 2 -->
-                        <div class="workshop-card reveal" data-title="ETHICAL HACKING WORKSHOP" data-organizer="SAC"
-                            data-year="2026">
-                            <div class="workshop-img-wrapper">
-                                <img src="img/sac.jpeg" alt="Workshop Certificate" class="workshop-preview">
-                                <div class="workshop-overlay">
-                                    <span>View Certificate</span>
-                                </div>
-                            </div>
-                            <div class="workshop-info">
-                                <h4 class="workshop-title">Ethical Hacking Workshop</h4>
-                                <p class="workshop-meta">SREE AYYAPPA COLLEGE • 2026</p>
-                            </div>
+                        <div class="credential-card" role="button" tabindex="0"
+                            data-img="img/sree-ayyappa-college-workshop.jpg">
+                            <h4>Ethical Hacking Workshop</h4>
+                            <p class="credential-issuer">Sree Ayyappa College</p>
+                            <p class="credential-date">2026</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Contact Section (05) -->
-        <section id="contact" class="contact section">
+        <!-- Contact Section -->
+        <section id="contact" class="contact">
             <div class="container">
-                <div class="contact-wrapper reveal">
-                    <div class="contact-header">
-                        <p class="overline">Initialize Handshake</p>
-                        <h2 class="section-title">Get In Touch</h2>
-                        <p class="section-subtitle">Secure channel open. Send a message to collaborate or just say
-                            hello.</p>
-                    </div>
-                    <a href="mailto:anandhanaryan@gmail.com"
-                        class="btn btn-primary big-btn">hello@anandhanarayan.com</a>
+                <div class="contact-content">
+                    <p class="contact-subtitle">Let's Work Together</p>
+                    <h2>Get In Touch</h2>
+                    <p class="contact-description">
+                        I'm always interested in hearing about new projects and opportunities. 
+                        Feel free to reach out if you'd like to collaborate.
+                    </p>
+                    
+                    <a href="mailto:anandhanaryan@gmail.com" class="email-link">
+                        anandhanaryan@gmail.com
+                    </a>
 
-                    <div class="social-links-large">
-                        <a href="https://github.com/Anandhan-2253" target="_blank" rel="noopener noreferrer"
-                            class="social-item">GitHub</a>
-                        <a href="https://www.linkedin.com/in/anandhanarayan" target="_blank" rel="noopener noreferrer"
-                            class="social-item">LinkedIn</a>
-                        <a href="https://x.com/_iam_anandhan_" target="_blank" rel="noopener noreferrer"
-                            class="social-item">X</a>
+                    <div class="social-links">
+                        <a href="https://github.com/Anandhan-2253" target="_blank" rel="noopener noreferrer">GitHub</a>
+                        <a href="https://www.linkedin.com/in/anandhanarayan" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                        <a href="https://x.com/_iam_anandhan_" target="_blank" rel="noopener noreferrer">Twitter</a>
                     </div>
                 </div>
             </div>
@@ -776,64 +432,9 @@
 
     <footer class="footer">
         <div class="container">
-            <div class="footer-content">
-                <p class="code-font">Designed & Built by Anandhanarayan_</p>
-            </div>
+            <p>Designed &amp; built by Anandhanarayan</p>
         </div>
     </footer>
-
-    <!-- Project Details Modal -->
-    <div id="project-details-modal" class="modal">
-        <div class="modal-container p-details">
-            <span class="modal-close">&times;</span>
-            <div class="p-details-header">
-                <p class="overline">Security Engineering Tool</p>
-                <h2 class="p-details-title">Cloud Misconfiguration Scanner</h2>
-            </div>
-            <div class="p-details-body">
-                <div class="p-details-grid">
-                    <div class="p-details-info">
-                        <h3>Key Features</h3>
-                        <ul class="features-list">
-                            <li><strong>IAM Audit:</strong> Scans for overly permissive roles and unused credentials.
-                            </li>
-                            <li><strong>Storage Inspection:</strong> Detects publicly accessible S3 buckets and
-                                unencrypted disks.</li>
-                            <li><strong>Network Analysis:</strong> Identifies exposed ports and weak security group
-                                rules.</li>
-                        </ul>
-
-                        <h3>Risk Prioritization</h3>
-                        <p>Uses a custom modular rule engine to assign risk scores based on exploitability and impact,
-                            ensuring engineers focus on critical vulnerabilities first.</p>
-
-                        <div class="disclaimer">
-                            <p><strong>Disclaimer:</strong> This tool is for educational and authorized security
-                                auditing purposes only.</p>
-                        </div>
-                    </div>
-                    <div class="p-details-visual">
-                        <h3>Architecture</h3>
-                        <div class="arch-diagram">
-                            <div class="arch-node">Scanner Core</div>
-                            <div class="arch-arrow"></div>
-                            <div class="arch-node">Rule Engine</div>
-                            <div class="arch-arrow"></div>
-                            <div class="arch-node">Security Report</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Image Modal -->
-    <div id="image-modal" class="modal">
-        <span class="modal-close">&times;</span>
-        <img class="modal-content" id="modal-image" alt="Certificate">
-        <div id="caption"></div>
-    </div>
-
     <script src="script.js"></script>
 </body>
 

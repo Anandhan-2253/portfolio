@@ -1,198 +1,419 @@
-document.addEventListener('DOMContentLoaded', () => {
+// =========================================
+// Professional Portfolio JavaScript
+// Modern, minimal, executive design
+// Optimized for smooth scrolling performance
+// =========================================
 
-    // --- Safety Reveal ---
-    const revealSite = () => {
-        document.body.classList.remove('loading');
-        document.querySelectorAll('.reveal').forEach(el => el.classList.add('active'));
-        if (typeof gsap !== 'undefined') {
-            gsap.to(".header", { y: 0, opacity: 1, duration: 1, ease: "power4.out" });
+// =========================================
+// Lightweight Three.js Background
+// =========================================
+
+let renderer, scene, camera, particles, animationId;
+
+const initThreeBackground = () => {
+    if (typeof THREE === 'undefined') {
+        console.warn('Three.js not loaded');
+        return;
+    }
+
+    const container = document.getElementById('canvas-container');
+    if (!container) return;
+
+    try {
+        // Scene setup
+        scene = new THREE.Scene();
+        scene.background = new THREE.Color(0x0f1419);
+
+        camera = new THREE.PerspectiveCamera(
+            75,
+            window.innerWidth / window.innerHeight,
+            0.1,
+            1000
+        );
+        camera.position.z = 30;
+
+        // Renderer - optimized for performance
+        renderer = new THREE.WebGLRenderer({
+            antialias: false,
+            alpha: true,
+            powerPreference: 'high-performance',
+        });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5)); // Cap pixel ratio
+        renderer.shadowMap.enabled = false;
+        container.appendChild(renderer.domElement);
+
+        // Simplified particle field - fewer particles for better performance
+        const particlesGeometry = new THREE.BufferGeometry();
+        const particleCount = 80; // Reduced from 150
+        const positions = new Float32Array(particleCount * 3);
+
+        for (let i = 0; i < particleCount * 3; i += 3) {
+            positions[i] = (Math.random() - 0.5) * 80;
+            positions[i + 1] = (Math.random() - 0.5) * 80;
+            positions[i + 2] = (Math.random() - 0.5) * 80;
         }
-    };
-    setTimeout(revealSite, 4000); // Fail-safe: Reveal after 4s anyway
 
-    // --- Library Check ---
-    if (typeof gsap === 'undefined' || typeof THREE === 'undefined') {
-        console.warn("External libraries failing to load. Checking CSP/Internet.");
-        revealSite();
+        particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+
+        const particlesMaterial = new THREE.PointsMaterial({
+            color: 0x3b82f6,
+            size: 0.25,
+            sizeAttenuation: true,
+            transparent: true,
+            opacity: 0.3,
+        });
+
+        particles = new THREE.Points(particlesGeometry, particlesMaterial);
+        scene.add(particles);
+
+        // Simplified sphere - lower geometry complexity
+        const sphereGeometry = new THREE.IcosahedronGeometry(18, 3);
+        const sphereMaterial = new THREE.MeshPhongMaterial({
+            color: 0x1e40af,
+            wireframe: true,
+            opacity: 0.03,
+            transparent: true,
+            emissive: 0x3b82f6,
+            emissiveIntensity: 0.08,
+        });
+
+        const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
+        scene.add(sphere);
+
+        // Minimal lighting
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.2);
+        scene.add(ambientLight);
+
+        // Animation loop - no mouse tracking for better performance
+        const animate = () => {
+            animationId = requestAnimationFrame(animate);
+
+            // Gentle rotation
+            particles.rotation.x += 0.00008;
+            particles.rotation.y += 0.00012;
+
+            sphere.rotation.x += 0.00008;
+            sphere.rotation.y += 0.00012;
+
+            renderer.render(scene, camera);
+        };
+
+        animate();
+
+        // Handle window resize
+        const handleResize = () => {
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+
+            camera.aspect = width / height;
+            camera.updateProjectionMatrix();
+            renderer.setSize(width, height);
+        };
+
+        window.addEventListener('resize', handleResize);
+
+        // Cleanup function
+        return () => {
+            cancelAnimationFrame(animationId);
+            window.removeEventListener('resize', handleResize);
+            renderer.dispose();
+            particlesGeometry.dispose();
+            particlesMaterial.dispose();
+        };
+    } catch (error) {
+        console.error('Three.js initialization error:', error);
+    }
+};
+
+// =========================================
+// Scroll Reveal Animations
+// =========================================
+
+const initScrollReveal = () => {
+    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
+        console.warn('GSAP or ScrollTrigger not loaded');
         return;
     }
 
     gsap.registerPlugin(ScrollTrigger);
 
-    // --- Scroll Progress Bar ---
-    window.addEventListener('scroll', () => {
-        const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-        const scrolled = (winScroll / height) * 100;
-        const progressBar = document.querySelector(".scroll-progress");
-        if (progressBar) progressBar.style.width = scrolled + "%";
+    // Section reveals - animate all sections
+    const revealElements = document.querySelectorAll('section');
+    revealElements.forEach((section, index) => {
+        // Skip hero section (has its own animation)
+        if (section.id === 'hero') return;
+        
+        gsap.fromTo(
+            section,
+            { opacity: 0, y: 40 },
+            {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                scrollTrigger: {
+                    trigger: section,
+                    start: 'top 75%',
+                    end: 'top 50%',
+                    scrub: false,
+                    markers: false,
+                },
+            }
+        );
     });
 
-    // --- Custom Cursor ---
-    const cursorDot = document.querySelector('.cursor-dot');
-    const cursorOutline = document.querySelector('.cursor-outline');
-
-    window.addEventListener('mousemove', (e) => {
-        const posX = e.clientX;
-        const posY = e.clientY;
-        if (cursorDot) {
-            cursorDot.style.left = `${posX}px`;
-            cursorDot.style.top = `${posY}px`;
-        }
-        if (cursorOutline) {
-            gsap.to(cursorOutline, {
-                left: posX,
-                top: posY,
-                duration: 0.5,
-                ease: "power2.out"
-            });
-        }
-    });
-
-    // --- Project Card Cursor Fix ---
-    const pCards = document.querySelectorAll('.project-card');
-    pCards.forEach(card => {
-        card.addEventListener('mouseenter', () => {
-            if (cursorDot) cursorDot.style.opacity = '0';
-            if (cursorOutline) cursorOutline.style.opacity = '0';
-        });
-        card.addEventListener('mouseleave', () => {
-            if (cursorDot) cursorDot.style.opacity = '1';
-            if (cursorOutline) cursorOutline.style.opacity = '1';
-        });
-    });
-
-    // --- Hero Parallax ---
-    window.addEventListener('mousemove', (e) => {
-        const { clientX, clientY } = e;
-        const xPos = (clientX / window.innerWidth - 0.5) * 40;
-        const yPos = (clientY / window.innerHeight - 0.5) * 40;
-
-        gsap.to(".hero-content", { x: xPos * 0.5, y: yPos * 0.5, duration: 1 });
-        gsap.to(".cyber-card", { x: -xPos, y: -yPos, duration: 1 });
-    });
-
-    // --- Typing Effect ---
-    const typingText = document.getElementById('typing-text');
-    const roles = ["Cybersecurity Enthusiast", "Full-Stack Web Developer", "Software Engineer", "Problem Solver"];
-    let roleIndex = 0, charIndex = 0, isDeleting = false;
-
-    function type() {
-        if (!typingText) return;
-        const currentRole = roles[roleIndex];
-        typingText.textContent = isDeleting ? currentRole.substring(0, charIndex - 1) : currentRole.substring(0, charIndex + 1);
-        charIndex = isDeleting ? charIndex - 1 : charIndex + 1;
-
-        let typeSpeed = isDeleting ? 50 : 100;
-        if (!isDeleting && charIndex === currentRole.length) {
-            isDeleting = true; typeSpeed = 2000;
-        } else if (isDeleting && charIndex === 0) {
-            isDeleting = false; roleIndex = (roleIndex + 1) % roles.length; typeSpeed = 500;
-        }
-        setTimeout(type, typeSpeed);
+    // Project cards - staggered
+    const projectCards = document.querySelectorAll('.project-card');
+    if (projectCards.length > 0) {
+        gsap.fromTo(
+            projectCards,
+            { opacity: 0, y: 30 },
+            {
+                opacity: 1,
+                y: 0,
+                duration: 0.6,
+                stagger: 0.1,
+                scrollTrigger: {
+                    trigger: '.projects-grid',
+                    start: 'top 70%',
+                    markers: false,
+                },
+            }
+        );
     }
-    setTimeout(type, 1000);
 
-    // --- Scroll Reveal ---
-    gsap.utils.toArray(".reveal").forEach(el => {
-        ScrollTrigger.create({
-            trigger: el,
-            start: "top 95%",
-            onEnter: () => el.classList.add('active'),
-            onLeaveBack: () => el.classList.remove('active'),
-            toggleActions: "play none none none"
+    // Skills cards
+    const skillCards = document.querySelectorAll('.skill-category');
+    if (skillCards.length > 0) {
+        gsap.fromTo(
+            skillCards,
+            { opacity: 0, y: 20 },
+            {
+                opacity: 1,
+                y: 0,
+                duration: 0.5,
+                stagger: 0.08,
+                scrollTrigger: {
+                    trigger: '.skills-grid',
+                    start: 'top 75%',
+                    markers: false,
+                },
+            }
+        );
+    }
+
+    // Credentials cards
+    const credentialCards = document.querySelectorAll('.credential-card');
+    if (credentialCards.length > 0) {
+        gsap.fromTo(
+            credentialCards,
+            { opacity: 0, y: 20 },
+            {
+                opacity: 1,
+                y: 0,
+                duration: 0.5,
+                stagger: 0.08,
+                scrollTrigger: {
+                    trigger: '.credentials-grid',
+                    start: 'top 75%',
+                    markers: false,
+                },
+            }
+        );
+    }
+
+    // Refresh ScrollTrigger to recalculate all positions
+    ScrollTrigger.refresh();
+};
+
+// =========================================
+// Mobile Navigation
+// =========================================
+
+const initMobileNav = () => {
+    const hamburger = document.querySelector('.hamburger');
+    const nav = document.querySelector('.nav');
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    if (!hamburger || !nav) return;
+
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        nav.classList.toggle('nav-active');
+    });
+
+    navLinks.forEach((link) => {
+        link.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            nav.classList.remove('nav-active');
         });
     });
 
-    // --- Workshops & Credentials Modal Logic ---
-    const modal = document.getElementById('image-modal');
-    const modalImg = document.getElementById('modal-image');
-    const modalCaption = document.getElementById('caption');
-    const closeBtn = document.querySelector('.modal-close');
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!nav.contains(e.target) && !hamburger.contains(e.target)) {
+            hamburger.classList.remove('active');
+            nav.classList.remove('nav-active');
+        }
+    });
+};
 
-    const openModal = (src, title, details = "") => {
-        if (!modal || !modalImg) return;
-        modal.classList.add('active');
-        modalImg.src = src;
-        if (modalCaption) modalCaption.innerHTML = `<strong>${title}</strong><br><small>${details}</small>`;
-        document.body.style.overflow = 'hidden';
-        gsap.fromTo(modalImg, { scale: 0.8, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.5, ease: "back.out(1.7)" });
-    };
+// =========================================
+// Active Navigation Link on Scroll
+// =========================================
 
-    const closeModal = () => {
-        if (!modal) return;
-        gsap.to(modal, {
-            opacity: 0, duration: 0.3, onComplete: () => {
-                modal.classList.remove('active');
-                modal.style.opacity = 1;
-                document.body.style.overflow = 'auto';
+const initActiveNav = () => {
+    const sections = document.querySelectorAll('section');
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    const highlightNavLink = () => {
+        let current = '';
+        sections.forEach((section) => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+            if (window.pageYOffset >= sectionTop - 300) {
+                current = section.getAttribute('id');
+            }
+        });
+
+        navLinks.forEach((link) => {
+            link.classList.remove('active');
+            if (link.getAttribute('href').slice(1) === current) {
+                link.classList.add('active');
             }
         });
     };
 
-    document.querySelectorAll('.cert-card').forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            openModal(link.getAttribute('href'), link.querySelector('.cert-title').textContent, link.querySelector('.cert-issuer').textContent);
-        });
-    });
+    window.addEventListener('scroll', highlightNavLink);
+};
 
-    document.querySelectorAll('.workshop-card').forEach(card => {
-        card.addEventListener('click', () => {
-            openModal(card.querySelector('img').src, card.dataset.title, `${card.dataset.organizer} • ${card.dataset.year}`);
-        });
-    });
+// =========================================
+// Initialize Everything
+// =========================================
 
-    // --- Project Details Modal ---
-    const pModal = document.getElementById('project-details-modal');
-    if (pModal) {
-        document.querySelectorAll('.project-details-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.preventDefault();
-                pModal.classList.add('active');
-                document.body.style.overflow = 'hidden';
-                gsap.fromTo(pModal.querySelector('.modal-container'),
-                    { scale: 0.9, opacity: 0 },
-                    { scale: 1, opacity: 1, duration: 0.4, ease: "back.out(1.2)" }
-                );
-            });
-        });
+document.addEventListener('DOMContentLoaded', () => {
+    // Initialize Three.js background first
+    initThreeBackground();
 
-        const closePModal = () => {
-            gsap.to(pModal, {
-                opacity: 0, duration: 0.3, onComplete: () => {
-                    pModal.classList.remove('active');
-                    pModal.style.opacity = 1;
-                    document.body.style.overflow = 'auto';
-                }
-            });
-        };
+    // Delay scroll reveal to ensure DOM is ready
+    setTimeout(() => {
+        initScrollReveal();
+    }, 100);
 
-        pModal.querySelector('.modal-close').addEventListener('click', closePModal);
-        pModal.addEventListener('click', (e) => { if (e.target === pModal) closePModal(); });
+    // Initialize mobile navigation
+    initMobileNav();
+
+    // Initialize active navigation highlighting
+    initActiveNav();
+
+    // Hero section animations
+    if (typeof gsap !== 'undefined') {
+        const heroElements = document.querySelectorAll(
+            '.hero-subtitle, .hero-title, .hero-tagline, .hero-description, .hero-cta'
+        );
+
+        gsap.fromTo(
+            heroElements,
+            { opacity: 0, y: 25 },
+            {
+                opacity: 1,
+                y: 0,
+                duration: 0.7,
+                stagger: 0.12,
+                ease: 'power2.out',
+            }
+        );
     }
-
-    if (closeBtn) closeBtn.addEventListener('click', closeModal);
-    if (modal) modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
-    document.addEventListener('keydown', (e) => { if (e.key === "Escape") closeModal(); });
-
-    // --- Mobile Navigation ---
-    const hamburger = document.querySelector('.hamburger');
-    const nav = document.querySelector('.nav');
-    if (hamburger && nav) {
-        hamburger.addEventListener('click', () => {
-            nav.classList.toggle('nav-active');
-            hamburger.classList.toggle('active');
-        });
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', () => {
-                nav.classList.remove('nav-active');
-                hamburger.classList.remove('active');
-            });
-        });
-    }
-
-    // --- Initial Site Reveal ---
-    window.addEventListener('load', revealSite);
-
 });
+
+// After page fully loads, refresh ScrollTrigger
+window.addEventListener('load', () => {
+    // Ensure smooth scrolling is enabled
+    if (document.documentElement.style.scrollBehavior === '') {
+        document.documentElement.style.scrollBehavior = 'smooth';
+    }
+    
+    // Refresh ScrollTrigger after all images and content load
+    if (typeof ScrollTrigger !== 'undefined') {
+        setTimeout(() => {
+            ScrollTrigger.refresh();
+        }, 500);
+    }
+});
+
+// =========================================
+// Smooth scroll to anchor links
+// =========================================
+
+document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener('click', function (e) {
+        const href = this.getAttribute('href');
+        if (href !== '#') {
+            e.preventDefault();
+            const target = document.querySelector(href);
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start',
+                });
+            }
+        }
+    });
+});
+
+// =========================================
+// Credential inline preview
+// Shows certificate image directly inside the card when clicked.
+// =========================================
+function setupInlineCredentialPreview() {
+    const credentialCards = document.querySelectorAll('.credential-card');
+
+    credentialCards.forEach(card => {
+        // ensure card is positioned for absolute child
+        card.style.position = 'relative';
+
+        card.addEventListener('click', () => {
+            // if preview already exists, remove it (toggle behavior)
+            const existing = card.querySelector('.credential-preview');
+            if (existing) {
+                existing.remove();
+                return;
+            }
+
+            // remove previews from other cards
+            document.querySelectorAll('.credential-preview').forEach(el => el.remove());
+
+            const imgSrc = card.getAttribute('data-img');
+            if (!imgSrc) return;
+
+            const preview = document.createElement('div');
+            preview.className = 'credential-preview';
+            preview.innerHTML = `
+                <span class="preview-close" aria-label="Close">&times;</span>
+                <img src="${imgSrc}" alt="Certificate Preview" />
+            `;
+
+            card.appendChild(preview);
+
+            // close button inside preview
+            const closeBtn = preview.querySelector('.preview-close');
+            closeBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                preview.remove();
+            });
+        });
+
+        card.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                card.click();
+            }
+        });
+    });
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupInlineCredentialPreview);
+} else {
+    setupInlineCredentialPreview();
+}
