@@ -42,6 +42,7 @@
                     <li><a href="#about" class="nav-link">About</a></li>
                     <li><a href="#skills" class="nav-link">Skills</a></li>
                     <li><a href="#projects" class="nav-link">Projects</a></li>
+                    <li><a href="#findings" class="nav-link">Findings</a></li>
                     <li><a href="#credentials" class="nav-link">Credentials</a></li>
                     <li><a href="#contact" class="nav-link">Contact</a></li>
                 </ul>
@@ -347,6 +348,45 @@
             </div>
         </section>
 
+        <!-- Findings / Writeups Section -->
+        <section id="findings" class="projects">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Security Findings & Writeups</h2>
+                </div>
+
+                <div class="projects-grid">
+
+                    <!-- Finding 1 -->
+                    <article class="project-card">
+                        <div class="project-image">
+                             <img src="img/idor.jpg" alt="IDOR Vulnerability">
+                        </div>
+
+                        <div class="project-content">
+                            <h3 class="project-title">🔐 IDOR: Phone Number → Email Leak</h3>
+
+                            <p class="project-desc">
+                                Discovered an IDOR vulnerability where user email addresses were exposed via phone number lookup API without authentication.
+                                Demonstrates broken access control and PII exposure risk.
+                            </p>
+
+                            <div class="project-tech">
+                                <span>API Security</span>
+                                <span>IDOR</span>
+                                <span>OWASP A01</span>
+                            </div>
+
+                            <a href="https://medium.com/@anandhanaryan/idor-the-phone-number-that-speaks-everyones-secrets-a6f97f381cd0" target="_blank" class="project-link">
+                                Read on Medium →
+                            </a>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
         <!-- Credentials Section -->
         <section id="credentials" class="credentials">
             <div class="container">
@@ -437,6 +477,7 @@
                     <div class="social-links">
                         <a href="https://github.com/Anandhan-2253" target="_blank" rel="noopener noreferrer">GitHub</a>
                         <a href="https://www.linkedin.com/in/anandhanarayan" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                        <a href="https://medium.com/@anandhanaryan" target="_blank" rel="noopener noreferrer">Medium</a>
                         <a href="https://x.com/_iam_anandhan_" target="_blank" rel="noopener noreferrer">Twitter</a>
                     </div>
                 </div>
